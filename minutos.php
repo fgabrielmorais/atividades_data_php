@@ -14,7 +14,7 @@
 
 <form method="POST">
 <label for="minutos">Informe um valor inteiro (referente a minutos)</label>
-<input type="minutos" id="minutos" name="minutos" placeholder="Data de nascimento" />
+<input type="number" id="minutos" name="minutos" placeholder="Data de nascimento" />
 <input type='submit' name="acao" value="Verificar" />
 </form>
 
@@ -64,7 +64,7 @@ if(isset($_POST['acao'])){
 
 }
 else{
-    echo "Informe sua data de nascimento";
+    echo "Informe um valor inteiro (referente a minutos)";
 }
 
 ?>
