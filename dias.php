@@ -103,9 +103,9 @@ if(isset($_POST['acao'])){
     $horas = $dias * 24;
 
     $date = new DateTime();
-    $datinha = new DateTime();
-    $datinha = date_add($datinha,date_interval_create_from_date_string("{$horas} hours"));
-    $intervalo = $date->diff($datinha);   
+    $dataAcrescental = new DateTime();
+    $dataAcrescental = date_add($dataAcrescental,date_interval_create_from_date_string("{$horas} hours"));
+    $intervalo = $date->diff($dataAcrescental);   
 
     $horas = $intervalo->days * 24;
     $minutos = $horas * 60;

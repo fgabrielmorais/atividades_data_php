@@ -106,10 +106,10 @@ if(isset($_POST['acao'])){
 
     if($minutos >= 0){
     $date = new DateTime();
-    $datinha = new DateTime();
-    $datinha = date_add($datinha,date_interval_create_from_date_string("{$minutos} minutes"));
+    $data_acrescental = new DateTime();
+    $data_acrescental = date_add($data_acrescental,date_interval_create_from_date_string("{$minutos} minutes"));
     
-    $intervalo = $datinha->diff($date);   
+    $intervalo = $data_acrescental->diff($date);   
    
     //maior ou igual a 1h e menor que 24h
     if($minutos >= 60  && $minutos < 1440){
