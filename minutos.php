@@ -14,7 +14,7 @@
 
 <form method="POST">
 <label for="minutos">Informe um valor inteiro (referente a minutos)</label>
-<input type="number" id="minutos" name="minutos" placeholder="Data de nascimento" />
+<input type="minutos" id="minutos" name="minutos" placeholder="Data de nascimento" />
 <input type='submit' name="acao" value="Verificar" />
 </form>
 
@@ -28,40 +28,39 @@
 
 if(isset($_POST['acao'])){
 
+    date_default_timezone_set("America/Sao_Paulo");
+ 
     $minutos = $_POST['minutos'];
-
-
-
+   
+    $date = new DateTime();
+    $datinha = new DateTime();
+    $date2 = date_add($datinha,date_interval_create_from_date_string("{$minutos} minutes"));
     
-    $datatime1 = new DateTime('2015/04/15 23:'. $minutos.':00');
-    // $dataAtual = date('d/m/y');
-    $datatime2 = new DateTime('2015/04/16 00:00:00');
+    $intervalo = $date2->diff($date);   
+    //maior ou igual a 1h e menor que 24h
 
-    $data1  = $datatime1->format('Y-m-d H:'. $minutos . ':s');
-    $data2  = $datatime2->format('Y-m-d H:i:s');
-    
+    if($minutos >= 60  && $minutos < 1440){
+     echo $intervalo->format("%y ano(s), %m mes(es), %d dia(s), %h hora(s), %i minuto(s)"); 
+    }
 
-    $diff = $datatime1->diff($datatime2);
-    $horas = $diff->i + ($diff->days * 60);
-    
-    echo "A diferença de horas entre {$data1} e {$data2} é {$horas} minutos";
+    //maior ou igual a 1 dia e menor que 4 semanas
+    else if($minutos >= 1440 && $minutos < 43800){
+     echo $intervalo->format("%y ano(s), %m mes(es), %d dia(s), %h hora(s), %i minuto(s)"); 
+    }
 
+    //maior ou igual a 1 mês e menor que 1 ano
+    else if($minutos >= 43800 && $minutos < 525600){
+         echo $intervalo->format("%y ano(s), %m mes(es), %d dia(s), %h hora(s), %i minuto(s)"); 
+    }
 
+    //maior ou igual a 1 ano
+    else if($minutos >= 525600){
+         echo $intervalo->format("%y ano(s), %m mes(es), %d dia(s), %h hora(s), %i minuto(s)"); 
+    }
 
-
-
-
-
-// // $data_user = new DateTime('H:i:s');
-// $dataAtual = date("i");
-
-// // echo $dataAtual . 'tempo';
-
-// echo 'Minuto atual: ' . $dataAtual;
-
-// // $intervalo = $data_user->diff($dataAtual);
-
-// // echo $intervalo->format("%y anos, %m meses, %d dias");
+    else{
+        echo $intervalo->format("%y ano(s), %m mes(es), %d dia(s), %h hora(s), %i minuto(s)"); 
+    }
 
 }
 else{
