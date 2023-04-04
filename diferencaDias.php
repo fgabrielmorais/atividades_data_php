@@ -17,6 +17,7 @@
 
 
 h3{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     text-align: center;
     margin: 0 20 50 20;
 
